@@ -267,6 +267,7 @@ fatorial_string += f" = {fatorial}"
 print(fatorial_string)
 '''
 
+'''
 # EX 11
 
 # Verificando TODOS os números
@@ -302,3 +303,4 @@ while i < num**0.5
     i += 1
 if 1 >= num**0.5:
     print('É primo')
+'''
