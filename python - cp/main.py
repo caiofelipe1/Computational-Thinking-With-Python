@@ -305,4 +305,99 @@ if 1 >= num**0.5:
     print('É primo')
 '''
 
+'''#ex 13
+salario = input('Diga seu salario:')
+while not salario.isnumeric():
+    salario = input('Diga seu salario:')
+salario = int(salario)
+taxa = 0.015
+partida = 1995
+while partida < 2000:
+    salario *= 1+taxa
+    taxa *= 2
+    partida += 1
+print(salario)
+'''
+
+'''#ex 14
+i = 1
+primeiro = 0
+segundo = 0
+terceiro = 0
+quarto = 0
+while True:
+    num = input(f"Diga o {i}° numero: ")
+    while not num.isnumeric():
+        num = input(f'Diga o {i}° numero: ')
+    num = int(num)
+    if num <= 25:
+        primeiro += 1
+    elif num <= 50:
+        segundo += 1
+    elif num <= 75:
+        terceiro += 1
+    elif num <= 100:
+        quarto += 1
+    else:
+        break
+    i+=1
+print(f"Vc digitou {primeiro} numeros entre 0 e 25\n"
+      f"Vc digitou {segundo} numeros entre 25 e 50\n"
+      f"Vc digitou {terceiro} numeros entre 50 e 75\n"
+      f"Vc digitou {quarto} numeros entre 75 e 100")'''
+'''
+#ex 15
+
+caio = 0
+lucas = 0
+ricardolegal = 0
+gabriel = 0
+nulos = 0
+brancos = 0
+total = 0
+
+while True:
+    voto = input('Digite o numero  do seu voto:  \n'
+                     ' 1 - caio \n'
+                     ' 2 - lucas \n'
+                     ' 3 - ricardolegal \n'
+                     ' 4 - gabriel \n'
+                     ' 5 - nulo \n'
+                     ' 6 - branco \n'
+                     ' 0 para sair\n')
+    while not (voto =='0' or voto == '1' or voto == '2' or voto == '3' or
+    voto == '4' or voto == '5' or voto =='6'):
+        voto = input('Digite o numero  do seu voto \n'
+                     ' 1 - caio \n'
+                     ' 2 - lucas \n'
+                     ' 3 - ricardolegal \n'
+                     ' 4 - gabriel \n'
+                     ' 5 - nulo \n'
+                     ' 6 - branco \n'
+                     ' (0 para sair \n)')
+
+    if voto == '0':
+        break
+    elif voto == '1':
+        caio += 1
+    elif voto == '2':
+        lucas += 1
+    elif voto == '3':
+        ricardolegal += 1
+    elif voto == '4':
+        gabriel += 1
+    elif voto == '5':
+        nulos += 1
+    else:
+        brancos += 1
+    total += 1
+print(f'O caio recebeu {caio} votos')
+print(f'O lucas recebeu {lucas} votos')
+print(f'O ricardolegal recebeu {ricardolegal} votos')
+print(f'O gabriel recebeu {gabriel} votos')
+print(f'Nulos foram {100*nulos/total:.2f}% do total')
+print(f'Brancos foram {100*brancos/total:.2f}% do total')
+'''
+
+
     
