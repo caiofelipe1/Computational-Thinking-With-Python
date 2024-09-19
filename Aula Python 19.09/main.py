@@ -100,6 +100,9 @@ while True:
 
         encerrar = forca_opcao('Quer encerrar a compra?',s_ou_n)
         if encerrar == s_ou_n[0]:
+            for key in carrinho['Endereço'].keys():
+                carrinho['Endereço'][key] = input(f'Diga o/a {key}: ')
+            print(carrinho)
             print('Tenho que montar o carrinho do usuario, calma.')
             break
 
