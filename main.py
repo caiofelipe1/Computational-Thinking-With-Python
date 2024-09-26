@@ -1,306 +1,139 @@
-#AULA PYTHON 04/11/2024
-'''qtd = 0
-par = 0
-while qtd < 5:
-    num = int(input('Diga um número:' ))
-    if num % 2 == 0:
-        par += 1
-    qtd += 1
-print(f'A quantidade de pares é {par} e impares {qtd - par}')
-'''
+import requests
+import pandas as pd
 
-'''
-senha = '1234'
-password = input('Diga sua senha: ')
-tentativas = 1
-while senha != password and tentativas < 3:
-    print(f'Vc é hacker? Só mais {3-tentativas} tentativas')
-    password = input('diga sua senha: ')
-    tentativas += 1
-if senha == password:
-    print('Acesso liberado')
-else:
-    print('Sai hacker!')
-'''
+def forca_opcao(msg,conjunto_opcoes,msg_erro = 'Inválido!'):
+    opcoes = '\n'.join(conjunto_opcoes)
+    opcao = input(f'{msg}\n{opcoes}\n->')
+    while not opcao in conjunto_opcoes:
+        print(msg_erro)
+        opcao = input(f'{msg}\n{opcoes}\n->')
+    return opcao
 
-'''i = 0
-soma = 0
-while i < 100:
-    i += 1
-    print(i)
-    #para somar ao quadrado é so colocar - soma += i*i
-    soma += i
-    print(f"i vale {i} e soma vale {soma}")
-'''
-
-'''# com AND 
-idoso = input('Você é idoso? (sim/não): ')
-while idoso != 'sim' and idoso != 'não':
-    idoso = input('Você é idoso? (sim/não): ')
-
-if idoso == 'sim':
-    print('top')
-else:
-    print('kid')
-'''
-
-
-'''# com OR
-idoso = input('Você é idoso? (sim/não): ')
-while not (idoso == 'sim' or idoso == 'não'):
-    idoso = input('Você é idoso? (sim/não): ')
-
-if idoso == 'sim':
-    print('top')
-else:
-    print('kid')
-'''
-
-'''# idoso com while True
-while True:
-    idoso = input('Você é idoso? (sim/não): ')
-    if idoso == 'sim' or idoso == 'não':
-        break'''
-
-
-'''num = input('Diga um número: ')
-while not num.isnumeric():
-    num = input('Diga um número: ')
-num = int(num)
-print(type(num),num)
-'''
-
-# PARA LER QUANTIDADE DE CARACTERES - print(len('danilo'))
-# while len(nome)<3
-
-# LISTA EXERCÍCIOS LOOP
-
-# EX 1 --------------------------------------------------------------------------------
-
-'''while True:
-    num = input('Dê uma nota de 0 a 10: ')
-    if nota.isnumeric():
-        print(type(num), num)
-        num = int(num)
-        print(type(num), num)
-        if num > 0 and num < 10:
-            break
-        else:
-            print("Você não digitou algo entre 0 e 10")
-    else:
-        print("Você não digitou um número")
-'''
-
-'''# EX 2 --------------------------------------------------------------------------------
-
-nome = input('Digite seu nome: ')
-while len(nome) < 3:
-    nome = input('Nome deve ter no mínimo 3 caractéres: ')
-
-while True:
-    idade = input('Diga sua idade: ')
-    if idade.isnumeric():
-        idade = int(idade)
-        if idade > 0 and idade < 150:
-            break
-        else:
-            print('seu numero nao esta entre 0 e 150')
-    else:
-        print('Não é um numero')
-
-while True:
-    salario = input('Digite seu salario: ')
-    if salario.isnumeric():
-        salario = int(salario)
-        if salario > 0:
-            break
-
-sx = input("Diga f ou m: ")
-while sx != 'f' and sx != 'm':
-    sx = input("Diga f ou m: ")
-
-sexo = input("Diga f ou m: ")
-while not (sexo == 'f' or sexo == 'm'):
-    sexo = input('Diga f ou m')
-
-estadoC = input('Diga seu estado civil (s, c, v, d')
-while not (estadoC == 's' or estadoC == 'c' or estadoC == 'v' or estadoC == 'd'):
-    estadoC = input('Diga seu estado civil (s, c, v, d): ')
-print(f"Seu nome é {nome}, sua idade é {idade}, seu salário é {salario}"
-      f"você é {sexo} e seu estado civil é {estadoC}")
-'''
-
-'''#EX 3
-
-paisA = 80000
-paisB = 200000
-contador = 0
-while paisA <= paisB:
-    contador += 1
-    paisA *= 1.03
-    paisB *= 1.015
-print(f"A cidade A passará a B em {contador} anos ")
-
-#a = 80
-#b = 200
-#anos = 0
-#while a < b:
-#    a = a + 0.03*a
-#    a*= 1.03
-#    b*= 1.015
-#    print(anos)
-
-'''
-
-'''
-#EX 4
-
-soma = 0
-qtd = 0
-while qtd < 5:
-    num = input(f'Diga o {qtd+1}° número: ')
+def checa_numero(msg,msg_erro = 'Inválido'):
+    num = input(msg)
     while not num.isnumeric():
-        num = input(f'Diga o {qtd+1}° número: ')
-    num = int(num)
-    qtd += 1
-    soma += num
-media = soma/qtd
-print(f"a soma é {soma} e a media é {media}")
-'''
+        print(msg_erro)
+        num = input(num)
+    return int(num)
 
-'''
-#EX 5
-
-a = input("Diga um numero: ")
-while not a.isnumeric():
-    a = input("Diga um numero: ")
-a = int(a)
+def comprar():
+    while True:
+        escolha = forca_opcao('Qual carro queres? ', carros['modelo'])
+        indice_escolha = indices[escolha]
+        for key in carros.keys():
+            print(f'{key} : {carros[key][indice_escolha]}')
 
 
-b = input("Diga outro numero: ")
-while not b.isnumeric():
-    b = input("Diga outro numero: ")
-b = int(b)
+        comprar = forca_opcao(f'Vai comprar o {escolha}?',sim_ou_nao)
 
-if b < a:
-    aux = a
-    a = b
-    b = aux
+        if comprar == sim_ou_nao[0]:
+            qtd = checa_numero(f'Quantas únidades de {escolha} vc vai levar? \n->')
+            if qtd > carros['estoque'][indice_escolha]:
+                print(f'Não ha {qtd} no nosso carro. Voltando ao início')
+                continue
+            else:
+                carros['estoque'][indice_escolha] -= qtd
+                if escolha not in carrinho['Carros'].keys():
+                    carrinho['Carros'][escolha] = qtd
+                else:
+                    carrinho['Carros'][escolha] += qtd
+                carrinho['Valor total'] += qtd*carros['preço(R$)'][indice_escolha]
 
-while a <= b:
-    print(a)
-    a += 1
-'''
+        encerrar = forca_opcao('Você deseja encerrar a compra?', sim_ou_nao)
+        if encerrar ==sim_ou_nao[0]:
+            if carrinho['Valor total'] != 0:
+                carrinho['Endereço'] = endereco()
+                return
+            print('CUZAAAAAAAAAAAAAAAAAAAAAAAAAOOOOO 😎🎂🐱‍💻')
 
-'''
-# EX 6
+def endereco():
+    while True:
+        cep = input('diga seu cep: ')
+        url = f'https://viacep.com.br/ws/{cep}/json/'
+        response = requests.get(url)
+        if response.status_code == 200:
+            response = response.json()
+            infos = ''
+            for key in response.keys():
+                infos += f'\n{key} : {response[key]}'
+            validar_endereco = forca_opcao('As informações estão corretas?',sim_ou_nao)
+            if validar_endereco == sim_ou_nao[0]:
+                response['unidade'] = input('Diga o número: ')
+                response['complemento'] = input('Diga o complemento: ')
+                return response
+        else:
+            print('CEP inválido')
 
-usuario = input('Diga seu usuário: ')
-senha = input('Diga sua senha: ')
-while usuario == senha:
-    print('Não pode ser igual')
-    usuario = input('Diga seu usuário: ')
-    senha = input('Diga sua senha: ')
-'''
 
-'''
-# EX 7
+def printa_dic(dic,level = 0):
+    for key in dic.keys():
+        if type(dic[key]) is not dict:
+            print(f'{level* ' '}{key} : {dic[key]}')
+        else:
+            level += 2
+            print(f'{key}')
+            printa_dic(dic[key],level)
+            level -= 2
 
-num = 1
-while num <= 10:
-    print(f'Tabuada do {num}')
-    i = 1
-    while i <= 10:
-        print(f'{num}*{i} = {num+i}')
-        i += 1
-    num += 1
-    print('--------')'''
-'''
-# EX 8 
+def remover():
+    escolha = forca_opcao('Qual carro voce deseja remover?: ', carros['modelo'])
+    indice_remover = indices[escolha]
+    for key in carros.keys():
+        carros[key].pop(indice_remover)
+    return
 
-a = 1
-b = 1
-print(a, end=' ')
-print(b, end=' ')
+def cadastrar():
+    for key in carros.keys():
+        info = input(f'Diga o novo/a {key}: ')
+        carros[key].append(info)
 
-qtd = 10
-i = 0
-while i < qtd:
-    c = a + b
-    print(c, end=' ')
-    a = b
-    b = c
-    i += 1 
-'''
+def atualizar():
+    opcoes_atualizacao = list(carros.keys())
+    opcoes_atualizacao.append('Total')
+    escolha = forca_opcao('Qual carro voce deseja atualizar?: ', carros['modelo'])
+    indice_remover = indices[escolha]
+    tipo_atualização = forca_opcao('Qual o tipo de atualização?: ',opcoes_atualizacao)
+    if tipo_atualização == opcoes_atualizacao[len(opcoes_atualizacao) - 1]:
+        for key in carros.keys():
+            carros[key][indice_escolha] = input(f'Diga o novo {key} do carro {escolha}: ')
+    else:
+        carros[tipo_atualização][indice_escolha] = input(f'Diga o novo {tipo_atualização} do carro {escolha}: ')
 
-# EX 9
-'''
-qtd = 0
-pares = 0
-impares = 0
-while qtd < 10:
-    num = input(f'Diga o {qtd+1}° número: ')
-    if not num.isnumeric():
-        num = input(f'Diga o {qtd+1}° número: ')
-        continue
-    num = int(num)
-    if num % 2 == 0:
-        pares += 1
-    qtd += 1
-impares = qtd - pares
-print(impares)
-'''
+carros = {
+    'modelo' : ['opala','marea','kombi','celtinha brabo','uno','monza','corcel'],
+    'potência (cv)' : [172,130,250,140,100,120,150],
+    'consumo (km/l)' : [1,3,8,7,15,2,1.5],
+    'cor' : ['laranja','verde','branca','preto','prata','preto','azul'],
+    'ano' : ['1972','2004','1985','2014','2001','1980','1975'],
+    'estoque' : [5,6,7,8,9,10,11],
+    'preço(R$)' : [50,10,2.50,1000000,100,200,999999]
+}
+carrinho = {
+    'Carros' : {},
+    'Valor total' : 0,
+    'Endereço' : {
+        'Rua:' : '',
+        'CEP:' : '',
+        'N:'   : '',
+    }
+}
 
-# EX 10
-'''
-num = input('Digite o número que deseja fatoriar: ')
-while not num.isnumeric():
-    num = input('Digite o número que deseja fatoriar: ')
-num = int(num)
-fatorial = num
-fatorial_string = f"{num}! = {num}"
-while num > 1:
-    num -= 1
-    fatorial *= num
-    fatorial_string += f"*{num}"
-fatorial_string += f" = {fatorial}"
-print(fatorial_string)
-'''
+sim_ou_nao = ['sim', 'não']
 
-'''
-# EX 11
+operacoes = ['remover','cadastrar','atualizar']
+indices = {carros['modelo'][i] : i for i in range(len(carros['modelo']))}
+funcao = ['cliente', 'funcionario']
 
-# Verificando TODOS os números
-i = 2
-num = 97
-while i < num:
-    print(f"{num}%{i} = {num%i}")
-    if num%i == 0:
-        print(f"{num} não é primo")
-        break
-    elif i == num-1:
-        print("é primo")
-    i += 1
-
-# Verificando apenas até a METADE dos números
-i = 2
-num = 97
-while i < num/2:
-    print(f"{num}%{i} = {num%i}")
-    if num%i == 0:
-        print(f"{num} não é primo")
-    i += 1
-if 1 >= num/2:
-    print('É primo')
-
-# Verificando apenas as RAÍZES dos números
-i = 2
-num = 97
-while i < num**0.5
-    print(f"{num}%{i} = {num%i}")
-    if num%i == 0:
-        print(f"{num} não é primo")
-    i += 1
-if 1 >= num**0.5:
-    print('É primo')
-'''
+cliente_ou_funcionario = forca_opcao('Qual dos dois vc se encaixa?',funcao)
+if cliente_ou_funcionario == funcao[0]:
+    comprar()
+    printa_dic(carrinho)
+else:
+    operacao = forca_opcao('Qual operação vc realizará',operacoes)
+    if operacao == operacoes[0]:
+        remover()
+    elif operacao == operacoes[1]:
+        cadastrar()
+    else:
+       atualizar()
+    print(pd.DataFrame(carros))
