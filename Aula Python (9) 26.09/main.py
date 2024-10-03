@@ -84,7 +84,7 @@ def remover():
 
 def cadastrar():
     for key in carros.keys():
-        info = input(f'Diga o novo/a {key}: ')
+        info = input(float(f'Diga o novo/a {key}: '))
         carros[key].append(info)
 
 def atualizar():
@@ -106,7 +106,7 @@ carros = {
     'cor' : ['laranja','verde','branca','preto','prata','preto','azul'],
     'ano' : ['1972','2004','1985','2014','2001','1980','1975'],
     'estoque' : [5,6,7,8,9,10,11],
-    'preço(R$)' : [50,10,2.50,1000000,100,200,999999]
+    'preço(R$)' : [50.,10.,2.50,1000000.,100.,200.,999999.]
 }
 carrinho = {
     'Carros' : {},
@@ -135,5 +135,5 @@ else:
     elif operacao == operacoes[1]:
         cadastrar()
     else:
-       atualizar()
+        atualizar()
     print(pd.DataFrame(carros))
